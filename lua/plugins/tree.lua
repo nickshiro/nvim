@@ -1,12 +1,9 @@
-vim.pack.add(
-	{
-		"https://github.com/nvim-neo-tree/neo-tree.nvim",
-		"https://github.com/nvim-lua/plenary.nvim",
-		"https://github.com/nvim-tree/nvim-web-devicons",
-		"https://github.com/MunifTanjim/nui.nvim",
-	},
-	{ confirm = false }
-)
+vim.pack.add({
+	"https://github.com/nvim-neo-tree/neo-tree.nvim",
+	"https://github.com/nvim-lua/plenary.nvim",
+	"https://github.com/nvim-tree/nvim-web-devicons",
+	"https://github.com/MunifTanjim/nui.nvim",
+}, { confirm = false })
 
 require("neo-tree").setup({
 	hide_root_node = true,

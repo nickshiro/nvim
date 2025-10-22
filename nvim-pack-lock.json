@@ -12,6 +12,10 @@
       "rev": "385e856",
       "src": "https://github.com/nickshiro/arc.nvim"
     },
+    "better-colorscheme.nvim": {
+      "rev": "d06ba03",
+      "src": "https://github.com/nickshiro/better-colorscheme.nvim"
+    },
     "cmp-buffer": {
       "rev": "b74fab3",
       "src": "https://github.com/hrsh7th/cmp-buffer"
@@ -33,7 +37,7 @@
       "src": "https://github.com/saadparwaiz1/cmp_luasnip"
     },
     "conform.nvim": {
-      "rev": "235dd79",
+      "rev": "9fd3d5e",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "friendly-snippets": {
@@ -89,7 +93,7 @@
       "src": "https://github.com/catgoose/nvim-colorizer.lua"
     },
     "nvim-lspconfig": {
-      "rev": "e5c61b0",
+      "rev": "52a8932",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
@@ -112,10 +116,6 @@
       "rev": "b8221e4",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
-    "outline.nvim": {
-      "rev": "6b62f73",
-      "src": "https://github.com/hedyhli/outline.nvim"
-    },
     "plenary.nvim": {
       "rev": "b9fd522",
       "src": "https://github.com/nvim-lua/plenary.nvim"
@@ -133,11 +133,11 @@
       "src": "https://github.com/nvim-telescope/telescope.nvim"
     },
     "tokyonight.nvim": {
-      "rev": "8734a4e",
+      "rev": "fd6c11a",
       "src": "https://github.com/folke/tokyonight.nvim"
     },
     "vague.nvim": {
-      "rev": "ac4ecda",
+      "rev": "1c3ab30",
       "src": "https://github.com/vague2k/vague.nvim"
     }
   }
