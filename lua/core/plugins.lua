@@ -1,22 +1,18 @@
 require("plugins.local.statusline").setup()
 
-require("lazy").setup({
-	require("core.themes"),
-	require("plugins.devicons"),
-	require("plugins.autopairs"),
-	require("plugins.autotag"),
-	require("plugins.colorizer"),
-	require("plugins.treesitter"),
-	require("plugins.treesitter-context"),
-	require("plugins.formatter"),
-	require("plugins.ibl"),
-	require("plugins.lsp"),
-	require("plugins.cmp"),
-	require("plugins.trailspace"),
-	require("plugins.telescope"),
-	require("plugins.tree"),
-	require("plugins.outline"),
-	require("plugins.neocord"),
-	require("plugins.sessions"),
-	require("plugins.tabs"),
-})
+require("plugins.cmp")
+require("plugins.autopairs")
+require("plugins.autotag")
+require("plugins.colorizer")
+require("plugins.devicons")
+require("plugins.formatter")
+require("plugins.lsp")
+require("plugins.ibl")
+require("plugins.neocord")
+require("plugins.sessions")
+require("plugins.telescope")
+require("plugins.themes")
+require("plugins.trailspace")
+require("plugins.tree")
+require("plugins.treesitter")
+require("plugins.treesitter-context")

@@ -1,5 +1,1 @@
-return {
-    "nvim-mini/mini.trailspace",
-    name = "trailspace",
-    version = '*',
-}
+vim.pack.add({ "https://github.com/nvim-mini/mini.trailspace" }, { confirm = false })

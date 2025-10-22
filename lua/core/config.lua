@@ -2,8 +2,18 @@ local opt = vim.opt
 local wo = vim.wo
 local g = vim.g
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
+g.loaded_tutor_mode_plugin = 0
+g.loaded_2html_plugin = 0
+
+g.loaded_python3_provider = 0
+g.loaded_ruby_provider = 0
+g.loaded_perl_provider = 0
+g.loaded_node_provider = 0
+
+g.mapleader = " "
+g.maplocalleader = " "
 
 opt.fillchars:append({ eob = " " })
 
