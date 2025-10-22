@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "Eva-Theme.nvim": {
+      "rev": "ade1adc",
+      "src": "https://github.com/sharpchen/Eva-Theme.nvim"
+    },
     "LuaSnip": {
       "rev": "ccf25a5",
       "src": "https://github.com/L3MON4D3/LuaSnip"
@@ -40,6 +44,10 @@
       "rev": "005b560",
       "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
     },
+    "kanagawa.nvim": {
+      "rev": "aef7f5c",
+      "src": "https://github.com/rebelot/kanagawa.nvim"
+    },
     "mini.trailspace": {
       "rev": "fab31f4",
       "src": "https://github.com/nvim-mini/mini.trailspace"
@@ -51,6 +59,10 @@
     "neocord": {
       "rev": "2ebf379",
       "src": "https://github.com/IogaMaster/neocord"
+    },
+    "neovim": {
+      "rev": "72a04c4",
+      "src": "https://github.com/rose-pine/neovim"
     },
     "neovim-session-manager": {
       "rev": "3409dc9",
@@ -92,6 +104,10 @@
       "rev": "c4ca798",
       "src": "https://github.com/windwp/nvim-ts-autotag"
     },
+    "nvim-tundra": {
+      "rev": "374ec2e",
+      "src": "https://github.com/sam4llis/nvim-tundra"
+    },
     "nvim-web-devicons": {
       "rev": "b8221e4",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
@@ -104,6 +120,10 @@
       "rev": "b9fd522",
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
+    "poimandres.nvim": {
+      "rev": "a488957",
+      "src": "https://github.com/olivercederborg/poimandres.nvim"
+    },
     "telescope-ui-select.nvim": {
       "rev": "6e51d7d",
       "src": "https://github.com/nvim-telescope/telescope-ui-select.nvim"
@@ -111,6 +131,14 @@
     "telescope.nvim": {
       "rev": "b4da76b",
       "src": "https://github.com/nvim-telescope/telescope.nvim"
+    },
+    "tokyonight.nvim": {
+      "rev": "8734a4e",
+      "src": "https://github.com/folke/tokyonight.nvim"
+    },
+    "vague.nvim": {
+      "rev": "ac4ecda",
+      "src": "https://github.com/vague2k/vague.nvim"
     }
   }
 }
