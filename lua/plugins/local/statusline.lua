@@ -27,14 +27,20 @@ local function file()
 end
 
 local function branch()
-	local ok, res = pcall(vim.fn.system, "git rev-parse --abbrev-ref HEAD")
+	local ok, res = pcall(vim.fn.system, "git rev-parse --abbrev-ref HEAD 2>/dev/null")
 	if ok then
-		return " " .. vim.trim(res)
+		res = vim.trim(res)
+		if res ~= "" and res ~= "HEAD" then
+			return " " .. res
+		end
 	end
 
-	local ok, res = pcall(vim.fn.system, "git config --get init.defaultBranch")
-	if ok then
-		return " " .. vim.trim(res)
+	local branchOk, branchRes = pcall(vim.fn.system, "git config --get init.defaultBranch 2>/dev/null")
+	if branchOk then
+		branchRes = vim.trim(branchRes)
+		if branchRes ~= "" then
+			return " " .. branchRes
+		end
 	end
 
 	return ""
