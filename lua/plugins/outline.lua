@@ -1,4 +1,4 @@
-vim.pack.add("https://github.com/hedyhli/outline.nvim", { confirm = false })
+vim.pack.add({ "https://github.com/hedyhli/outline.nvim" }, { confirm = false })
 require("outline").setup({})
 
 local map = vim.keymap.set

@@ -13,7 +13,7 @@
       "src": "https://github.com/nickshiro/arc.nvim"
     },
     "better-colorscheme.nvim": {
-      "rev": "d06ba03",
+      "rev": "10a8a45",
       "src": "https://github.com/nickshiro/better-colorscheme.nvim"
     },
     "cmp-buffer": {
@@ -39,6 +39,10 @@
     "conform.nvim": {
       "rev": "9fd3d5e",
       "src": "https://github.com/stevearc/conform.nvim"
+    },
+    "elixir.nvim": {
+      "rev": "75d1056",
+      "src": "file:///home/nick/w/elixir.nvim"
     },
     "friendly-snippets": {
       "rev": "572f566",
@@ -133,7 +137,7 @@
       "src": "https://github.com/nvim-telescope/telescope.nvim"
     },
     "tokyonight.nvim": {
-      "rev": "fd6c11a",
+      "rev": "1199c0e",
       "src": "https://github.com/folke/tokyonight.nvim"
     },
     "vague.nvim": {

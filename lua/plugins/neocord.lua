@@ -1,4 +1,4 @@
-vim.pack.add({ "https://github.com/IogaMaster/neocord" }, { conform = false })
+vim.pack.add({ "https://github.com/IogaMaster/neocord" }, { confirm = false })
 
 require("neocord").setup({
 	-- General options

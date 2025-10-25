@@ -1,6 +1,11 @@
-vim.pack.add({ "https://github.com/nvim-treesitter/nvim-treesitter" }, { confirm = false })
+vim.pack.add({
+	"https://github.com/nvim-treesitter/nvim-treesitter",
+	"https://github.com/windwp/nvim-ts-autotag",
+}, { confirm = false, version = "main" })
 
-require("nvim-treesitter").setup({
+local configs = require("nvim-treesitter.configs")
+
+configs.setup({
 	ensure_installed = {
 		"bash",
 		"query",
@@ -12,6 +17,7 @@ require("nvim-treesitter").setup({
 		"gowork",
 		"json",
 		"json5",
+		"toml",
 		"yaml",
 		"html",
 		"css",
@@ -35,7 +41,31 @@ require("nvim-treesitter").setup({
 	},
 	sync_install = false,
 	auto_install = true,
+	ignore_install = {},
+	modules = {},
 	highlight = {
 		enable = true,
+		additional_vim_regex_highlighting = true,
+	},
+	indent = {
+		enable = true,
+	},
+	autotag = {
+		enable = true,
+		enable_close = true,
+		enable_rename = true,
+		enable_close_on_slash = true,
+		filetypes = {
+			"html",
+			"xml",
+			"javascript",
+			"typescript",
+			"javascriptreact",
+			"typescriptreact",
+			"tsx",
+			"jsx",
+			"markdown",
+		},
+		skip_tags = { "br", "img", "Image", "hr", "input", "meta", "link" },
 	},
 })

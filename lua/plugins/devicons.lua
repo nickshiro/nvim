@@ -1,19 +1,17 @@
-vim.pack.add({ "https://github.com/nvim-tree/nvim-web-devicons" })
+vim.pack.add({ "https://github.com/nvim-tree/nvim-web-devicons" }, { confirm = false })
 local devicons = require("nvim-web-devicons")
 
-local icon, hl_group_name = devicons.get_icon("tsconfig.json", "json", { default = false })
-local hl = vim.api.nvim_get_hl_by_name(hl_group_name, true)
-local color = string.format("#%06x", hl.foreground or 0xffffff)
+local ts_icon, ts_color = devicons.get_icon_color("tsconfig.json", "tsconfig.json", { default = true })
 
 devicons.set_icon({
 	["tsconfig.app.json"] = {
-		icon = icon,
-		color = color,
-		name = hl_group_name,
+		icon = ts_icon,
+		color = ts_color,
+		name = "TsConfigAppJson",
 	},
 	["tsconfig.node.json"] = {
-		icon = icon,
-		color = color,
-		name = hl_group_name,
+		icon = ts_icon,
+		color = ts_color,
+		name = "TsConfigNodeJson",
 	},
 })
