@@ -1,14 +1,14 @@
 vim.pack.add({ "https://github.com/neovim/nvim-lspconfig" }, { confirm = false })
 
-vim.lsp.util.stylize_markdown = function(bufnr, contents, opts)
-	contents = vim.lsp.util._normalize_markdown(contents, {
-		width = vim.lsp.util._make_floating_popup_size(contents, opts),
-	})
-	vim.bo[bufnr].filetype = "markdown"
-	vim.treesitter.start(bufnr)
-	vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, contents)
-	return contents
-end
+-- vim.lsp.util.stylize_markdown = function(bufnr, contents, opts)
+-- 	contents = vim.lsp.util._normalize_markdown(contents, {
+-- 		width = vim.lsp.util._make_floating_popup_size(contents, opts),
+-- 	})
+-- 	vim.bo[bufnr].filetype = "markdown"
+-- 	vim.treesitter.start(bufnr)
+-- 	vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, contents)
+-- 	return contents
+-- end
 
 vim.lsp.config("lua_ls", {
 	settings = {
@@ -42,6 +42,6 @@ vim.lsp.enable({
 	"biome",
 	"bashls",
 	"yamlls",
-	"elixirls",
+	"elixir-ls",
 	"lua_ls",
 })

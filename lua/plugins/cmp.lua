@@ -7,11 +7,13 @@ vim.pack.add({
 	"https://github.com/hrsh7th/cmp-nvim-lsp",
 	"https://github.com/hrsh7th/cmp-buffer",
 	"https://github.com/hrsh7th/cmp-path",
+	"https://github.com/windwp/nvim-autopairs",
 }, { confirm = false })
 
 require("luasnip").setup({ history = true, updateevents = "TextChanged,TextChangedI" })
 
 local cmp = require("cmp")
+
 cmp.setup({
 	completion = { completeopt = "menu,menuone" },
 
@@ -21,30 +23,13 @@ cmp.setup({
 		end,
 	},
 
-	mapping = {
-		["<C-p>"] = cmp.mapping.select_prev_item(),
-		["<C-n>"] = cmp.mapping.select_next_item(),
-		["<C-d>"] = cmp.mapping.scroll_docs(-4),
+	mapping = cmp.mapping.preset.insert({
+		["<C-b>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete(),
-		["<C-e>"] = cmp.mapping.close(),
-		["<CR>"] = cmp.mapping.confirm({
-			behavior = cmp.ConfirmBehavior.Insert,
-			select = true,
-		}),
-
-		["<C-y>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
-
-		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif require("luasnip").jumpable(-1) then
-				require("luasnip").jump(-1)
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-	},
+		["<C-e>"] = cmp.mapping.abort(),
+		["<CR>"] = cmp.mapping.confirm({ select = true }),
+	}),
 
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp", priority = "100" },
@@ -54,10 +39,6 @@ cmp.setup({
 		{ name = "path", priority = "90" },
 		{ name = "emmet_language_server", priority = "0" },
 	}),
-
-	perfomance = {
-		max_view_entries = 15,
-	},
 
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
@@ -94,3 +75,7 @@ cmp.setup({
 		end,
 	},
 })
+
+-- Autopairs
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())

@@ -40,6 +40,10 @@
       "rev": "9fd3d5e",
       "src": "https://github.com/stevearc/conform.nvim"
     },
+    "coq_nvim": {
+      "rev": "a63d28a9",
+      "src": "https://github.com/ms-jpq/coq_nvim"
+    },
     "elixir.nvim": {
       "rev": "75d1056",
       "src": "file:///home/nick/w/elixir.nvim"

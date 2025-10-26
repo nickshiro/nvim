@@ -1,7 +1,6 @@
 require("plugins.local.statusline").setup()
 
 require("plugins.cmp")
-require("plugins.autopairs")
 require("plugins.colorizer")
 require("plugins.devicons")
 require("plugins.formatter")
