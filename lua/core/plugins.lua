@@ -1,9 +1,9 @@
-require("plugins.local.statusline").setup()
+require("plugins.local.statusline")
+require("plugins.local.formatter")
 
 require("plugins.cmp")
 require("plugins.colorizer")
 require("plugins.devicons")
-require("plugins.formatter")
 require("plugins.lsp")
 require("plugins.ibl")
 require("plugins.neocord")

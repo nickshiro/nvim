@@ -7,6 +7,7 @@ local function exe(cmd)
 end
 
 map("", "<leader>w", exe("w"))
+map("", "<leader>f", exe("Fmt"))
 map("", "<leader>y", '"+y')
 map("", "<leader>d", '"+d')
 map("", "<leader>D", '"+D')

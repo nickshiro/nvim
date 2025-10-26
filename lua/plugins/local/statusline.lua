@@ -1,5 +1,3 @@
-local M = {}
-
 local modes = {
 	n = "N",
 	i = "I",
@@ -54,10 +52,6 @@ function _G.statusline()
 	return table.concat({ " ", mode(), " | ", file(), "%=", branch(), " | ", position(), " " })
 end
 
-function M.setup()
-	vim.opt.showmode = false
-	vim.o.laststatus = 3
-	vim.o.statusline = "%!v:lua.statusline()"
-end
-
-return M
+vim.opt.showmode = false
+vim.o.laststatus = 3
+vim.o.statusline = "%!v:lua.statusline()"
