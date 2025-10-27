@@ -1,4 +1,4 @@
-vim.pack.add({ "https://github.com/neovim/nvim-lspconfig" }, { confirm = false })
+vim.pack.add({ 'https://github.com/neovim/nvim-lspconfig' }, { confirm = false })
 
 -- vim.lsp.util.stylize_markdown = function(bufnr, contents, opts)
 -- 	contents = vim.lsp.util._normalize_markdown(contents, {
@@ -9,6 +9,7 @@ vim.pack.add({ "https://github.com/neovim/nvim-lspconfig" }, { confirm = false }
 -- 	vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, contents)
 -- 	return contents
 -- end
+--
 
 vim.lsp.config("lua_ls", {
 	settings = {
@@ -20,7 +21,7 @@ vim.lsp.config("lua_ls", {
 	},
 })
 
-vim.lsp.config("elixirls", {
+vim.lsp.config("elixir-ls", {
 	cmd = { "elixir-ls" },
 	filetypes = { "elixir", "eelixir", "heex", "surface" },
 	settings = {
@@ -31,9 +32,32 @@ vim.lsp.config("elixirls", {
 	},
 })
 
+vim.lsp.config("emmet_language_server", {
+	filetypes = {
+		"css",
+		"eruby",
+		"html",
+		"javascript",
+		"javascriptreact",
+		"less",
+		"sass",
+		"scss",
+		"pug",
+		"typescriptreact",
+	},
+})
+
+for _, lang in pairs({ "lua_ls", "ts_ls" }) do
+	vim.lsp.config(lang, {
+		on_init = function(p)
+			p.server_capabilities.documentFormattingProvider = false
+		end,
+	})
+end
+
 vim.lsp.enable({
 	"ts_ls",
-	"stylua",
+    "cssls",
 	"html",
 	"tailwindcss",
 	"rust_analyzer",
@@ -44,4 +68,5 @@ vim.lsp.enable({
 	"yamlls",
 	"elixir-ls",
 	"lua_ls",
+	"stylua",
 })

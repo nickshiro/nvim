@@ -1,7 +1,6 @@
 vim.pack.add({ "https://github.com/IogaMaster/neocord" }, { confirm = false })
 
 require("neocord").setup({
-	-- General options
 	logo = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Neovim-mark.svg/1680px-Neovim-mark.svg.png", -- "auto" or url
 	logo_tooltip = "NeoVim", -- nil or string
 	main_image = "language", -- "language" or "logo"
@@ -13,8 +12,6 @@ require("neocord").setup({
 	show_time = false, -- Show the timer
 	global_timer = true, -- if set true, timer won't update when any event are triggered
 	buttons = { { label = "GitHub", url = "https://pornhub.com" } }, -- A list of buttons (objects with label and url attributes) or a function returning such list.
-
-	-- Rich Presence text options
 	editing_text = "Editing %s", -- Format string rendered when an editable file is loaded in the buffer (either string or function(filename: string): string)
 	file_explorer_text = "Browsing %s", -- Format string rendered when browsing a file explorer (either string or function(file_explorer_name: string): string)
 	git_commit_text = "Committing changes", -- Format string rendered when committing changes in git (either string or function(filename: string): string)

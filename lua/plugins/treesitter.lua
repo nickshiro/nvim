@@ -1,74 +1,54 @@
 vim.pack.add({
-	"https://github.com/nvim-treesitter/nvim-treesitter",
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
 	"https://github.com/windwp/nvim-ts-autotag",
-}, { confirm = false, version = "main" })
+}, { confirm = false })
 
-local configs = require("nvim-treesitter.configs")
+vim.cmd.packadd("nvim-treesitter")
 
-configs.setup({
-	ensure_installed = {
-		"bash",
-		"query",
-		"c",
-		"go",
-		"gosum",
-		"gotmpl",
-		"gomod",
-		"gowork",
-		"json",
-		"json5",
-		"toml",
-		"yaml",
-		"html",
-		"css",
-		"javascript",
-		"jsdoc",
-		"typescript",
-		"tsx",
-		"lua",
-		"luadoc",
-		"markdown",
-		"markdown_inline",
-		"rust",
-		"make",
-		"cmake",
-		"ssh_config",
-		"dockerfile",
-		"nginx",
-		"elixir",
-		"heex",
-		"comment",
-		"gitignore",
-		"git_config",
-		"dockerfile",
-	},
-	sync_install = false,
-	auto_install = true,
-	ignore_install = {},
-	modules = {},
-	highlight = {
-		enable = true,
-		additional_vim_regex_highlighting = true,
-	},
-	indent = {
-		enable = true,
-	},
-	autotag = {
-		enable = true,
-		enable_close = true,
-		enable_rename = true,
-		enable_close_on_slash = true,
-		filetypes = {
-			"html",
-			"xml",
-			"javascript",
-			"typescript",
-			"javascriptreact",
-			"typescriptreact",
-			"tsx",
-			"jsx",
-			"markdown",
-		},
-		skip_tags = { "br", "img", "Image", "hr", "input", "meta", "link" },
-	},
+local ensure_installed = {
+	"bash",
+	"query",
+	"c",
+	"go",
+	"gosum",
+	"gotmpl",
+	"gomod",
+	"gowork",
+	"json",
+	"json5",
+	"toml",
+	"yaml",
+	"html",
+	"css",
+	"javascript",
+	"jsdoc",
+	"typescript",
+	"tsx",
+	"lua",
+	"luadoc",
+	"markdown",
+	"markdown_inline",
+	"rust",
+	"make",
+	"cmake",
+	"ssh_config",
+	"dockerfile",
+	"nginx",
+	"elixir",
+	"heex",
+	"comment",
+	"gitignore",
+	"git_config",
+	"dockerfile",
+}
+
+require("nvim-treesitter").install(ensure_installed)
+
+local filetypes = vim.iter(ensure_installed):map(vim.treesitter.language.get_filetypes):flatten():totable()
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = filetypes,
+	callback = function(ev)
+		vim.treesitter.start(ev.buf)
+	end,
 })

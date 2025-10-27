@@ -9,11 +9,11 @@
       "src": "https://github.com/L3MON4D3/LuaSnip"
     },
     "arc.nvim": {
-      "rev": "385e856",
+      "rev": "5f60430",
       "src": "https://github.com/nickshiro/arc.nvim"
     },
     "better-colorscheme.nvim": {
-      "rev": "10a8a45",
+      "rev": "1968e7f",
       "src": "https://github.com/nickshiro/better-colorscheme.nvim"
     },
     "cmp-buffer": {
@@ -36,18 +36,6 @@
       "rev": "98d9cb5",
       "src": "https://github.com/saadparwaiz1/cmp_luasnip"
     },
-    "conform.nvim": {
-      "rev": "9fd3d5e",
-      "src": "https://github.com/stevearc/conform.nvim"
-    },
-    "coq_nvim": {
-      "rev": "a63d28a9",
-      "src": "https://github.com/ms-jpq/coq_nvim"
-    },
-    "elixir.nvim": {
-      "rev": "75d1056",
-      "src": "file:///home/nick/w/elixir.nvim"
-    },
     "friendly-snippets": {
       "rev": "572f566",
       "src": "https://github.com/rafamadriz/friendly-snippets"
@@ -65,7 +53,7 @@
       "src": "https://github.com/nvim-mini/mini.trailspace"
     },
     "neo-tree.nvim": {
-      "rev": "0d0b29a",
+      "rev": "fa61e06",
       "src": "https://github.com/nvim-neo-tree/neo-tree.nvim"
     },
     "neocord": {
@@ -85,12 +73,8 @@
       "src": "https://github.com/MunifTanjim/nui.nvim"
     },
     "nvim": {
-      "rev": "af58927",
+      "rev": "8c4125e",
       "src": "https://github.com/catppuccin/nvim"
-    },
-    "nvim-autopairs": {
-      "rev": "7a2c97c",
-      "src": "https://github.com/windwp/nvim-autopairs"
     },
     "nvim-cmp": {
       "rev": "a7bcf1d",
@@ -101,12 +85,13 @@
       "src": "https://github.com/catgoose/nvim-colorizer.lua"
     },
     "nvim-lspconfig": {
-      "rev": "52a8932",
+      "rev": "a9b2fb5",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
-      "rev": "42fc28ba",
-      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
+      "rev": "645f42e8",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter",
+      "version": "'main'"
     },
     "nvim-treesitter-context": {
       "rev": "ec308c7",
@@ -121,7 +106,7 @@
       "src": "https://github.com/sam4llis/nvim-tundra"
     },
     "nvim-web-devicons": {
-      "rev": "b8221e4",
+      "rev": "8dcb311",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "plenary.nvim": {
@@ -141,11 +126,11 @@
       "src": "https://github.com/nvim-telescope/telescope.nvim"
     },
     "tokyonight.nvim": {
-      "rev": "1199c0e",
+      "rev": "4fe1b0c",
       "src": "https://github.com/folke/tokyonight.nvim"
     },
     "vague.nvim": {
-      "rev": "1c3ab30",
+      "rev": "5689afd",
       "src": "https://github.com/vague2k/vague.nvim"
     }
   }

@@ -7,7 +7,7 @@ vim.pack.add({
 	"https://github.com/hrsh7th/cmp-nvim-lsp",
 	"https://github.com/hrsh7th/cmp-buffer",
 	"https://github.com/hrsh7th/cmp-path",
-	"https://github.com/windwp/nvim-autopairs",
+    "https://github.com/windwp/nvim-ts-autotag",
 }, { confirm = false })
 
 require("luasnip").setup({ history = true, updateevents = "TextChanged,TextChangedI" })
@@ -75,7 +75,3 @@ cmp.setup({
 		end,
 	},
 })
-
--- Autopairs
-local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
