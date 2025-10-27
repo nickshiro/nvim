@@ -27,3 +27,5 @@ vim.pack.add({
 	"https://github.com/sam4llis/nvim-tundra",
 	"https://github.com/nickshiro/better-colorscheme.nvim",
 }, { confirm = false })
+
+require("mini.trailspace")

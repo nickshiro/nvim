@@ -13,5 +13,3 @@ end)
 map("", "<leader>y", '"+y')
 map("", "<leader>d", '"+d')
 map("", "<leader>D", '"+D')
-
-
