@@ -7,7 +7,6 @@ vim.pack.add({
 	"https://github.com/hrsh7th/cmp-nvim-lsp",
 	"https://github.com/hrsh7th/cmp-buffer",
 	"https://github.com/hrsh7th/cmp-path",
-    "https://github.com/windwp/nvim-ts-autotag",
 }, { confirm = false })
 
 require("luasnip").setup({ history = true, updateevents = "TextChanged,TextChangedI" })
@@ -37,7 +36,6 @@ cmp.setup({
 		{ name = "buffer", priority = "60" },
 		{ name = "nvim_lua", priority = "70" },
 		{ name = "path", priority = "90" },
-		{ name = "emmet_language_server", priority = "0" },
 	}),
 
 	formatting = {
@@ -55,22 +53,22 @@ cmp.setup({
 				Property = "󰜢",
 				Unit = "󰑭",
 				Value = "󰎠",
-				Enum = "",
 				Keyword = "󰌆",
 				Snippet = "",
 				Color = "󰏘",
 				File = "",
 				Reference = "󰈇",
 				Folder = "󰉋",
-				EnumMember = "",
+				Enum = "",
+				EnumMember = "",
 				Constant = "󰏿",
 				Struct = "󰙅",
 				Event = "",
 				Operator = "󰆕",
-				TypeParameter = "",
+				TypeParameter = "T",
 				Text = "",
 			}
-			vim_item.kind = icons[vim_item.kind] or ""
+			vim_item.kind = icons[vim_item.kind] or " "
 			return vim_item
 		end,
 	},

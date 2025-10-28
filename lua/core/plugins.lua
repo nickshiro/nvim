@@ -26,6 +26,9 @@ vim.pack.add({
 	"https://github.com/olivercederborg/poimandres.nvim",
 	"https://github.com/sam4llis/nvim-tundra",
 	"https://github.com/nickshiro/better-colorscheme.nvim",
+	"file:///home/nick/w/elixir.nvim",
 }, { confirm = false })
+
+vim.cmd.packadd("elixir.nvim")
 
 require("mini.trailspace")

@@ -1,4 +1,4 @@
-vim.pack.add({ 'https://github.com/neovim/nvim-lspconfig' }, { confirm = false })
+vim.pack.add({ "https://github.com/neovim/nvim-lspconfig" }, { confirm = false })
 
 -- vim.lsp.util.stylize_markdown = function(bufnr, contents, opts)
 -- 	contents = vim.lsp.util._normalize_markdown(contents, {
@@ -57,7 +57,7 @@ end
 
 vim.lsp.enable({
 	"ts_ls",
-    "cssls",
+	"cssls",
 	"html",
 	"tailwindcss",
 	"rust_analyzer",

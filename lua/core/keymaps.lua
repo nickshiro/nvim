@@ -7,8 +7,8 @@ local function exe(cmd)
 end
 
 map("", "<leader>w", exe("w"))
-map("", "<leader>fm", function ()
-    vim.lsp.buf.format()
+map("", "<leader>fm", function()
+	vim.lsp.buf.format()
 end)
 map("", "<leader>y", '"+y')
 map("", "<leader>d", '"+d')

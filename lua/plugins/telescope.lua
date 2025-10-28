@@ -1,11 +1,8 @@
-vim.pack.add(
-	{
-		"https://github.com/nvim-telescope/telescope.nvim",
-		"https://github.com/nvim-telescope/telescope-ui-select.nvim",
-		"https://github.com/nvim-lua/plenary.nvim",
-	},
-	{ confirm = false }
-)
+vim.pack.add({
+	"https://github.com/nvim-telescope/telescope.nvim",
+	"https://github.com/nvim-telescope/telescope-ui-select.nvim",
+	"https://github.com/nvim-lua/plenary.nvim",
+}, { confirm = false })
 
 local telescope = require("telescope")
 local themes = require("telescope.themes")
