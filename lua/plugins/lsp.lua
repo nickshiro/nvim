@@ -32,6 +32,11 @@ vim.lsp.config("elixir-ls", {
 	},
 })
 
+vim.lsp.config("emmet-ls", {
+	cmd = { "~/w/emmet-ls/zig-out/bin/emmet_ls" },
+	filetypes = { "html", "css", "typescriptreact" },
+})
+
 vim.lsp.config("emmet_language_server", {
 	filetypes = {
 		"css",
@@ -59,14 +64,17 @@ vim.lsp.enable({
 	"ts_ls",
 	"cssls",
 	"html",
+    "gopls",
 	"tailwindcss",
 	"rust_analyzer",
 	"jsonls",
 	"emmet_language_server",
+    -- "emmet_ls",
 	"biome",
 	"bashls",
 	"yamlls",
 	"elixir-ls",
 	"lua_ls",
 	"stylua",
+	"zls",
 })
