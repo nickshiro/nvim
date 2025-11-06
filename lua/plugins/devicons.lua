@@ -7,7 +7,8 @@ local _, go_color = devicons.get_icon_color("go.go", "go", { default = true })
 local _, gomod_color = devicons.get_icon_color("go.mod", "go.mod", { default = true })
 local _, gosum_color = devicons.get_icon_color("go.sum", "go.sum", { default = true })
 local _, license_color = devicons.get_icon_color("LICENSE", "LICENSE", { default = true })
-
+local _, png_color = devicons.get_icon_color("png", "png", { default = true })
+local _, json_color = devicons.get_icon_color("json", "json", { default = true })
 
 devicons.set_icon({
 	["tsconfig.app.json"] = {
@@ -53,9 +54,19 @@ devicons.set_icon({
     ["golden"] = {
         icon = "󰂔",
         color = go_color,
-        name = "GoldenTests"
+        name = "GoldenTests",
     },
+    ["png"] = {
+        icon = "",
+        color = png_color,
+        name = "Png",
+    },
+    ["json"] = {
+        icon = "",
+        color = json_color,
+        name = "Json"
+    }
 })
 
 local _, unknown_color = devicons.get_icon_color("unknown", nil, { default = true })
-devicons.set_default_icon("", unknown_color)
+devicons.set_default_icon("", unknown_color)
