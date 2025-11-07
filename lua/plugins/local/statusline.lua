@@ -10,8 +10,8 @@ local modes = {
 }
 
 local function mode()
-	local mode = vim.fn.mode()
-	return modes[mode] or mode
+	local m = vim.fn.mode()
+	return modes[m] or m
 end
 
 local function file()
