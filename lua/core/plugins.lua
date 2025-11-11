@@ -1,5 +1,3 @@
-require("plugins.local.statusline")
-
 require("plugins.autotag")
 require("plugins.cmp")
 require("plugins.colorizer")
@@ -8,10 +6,10 @@ require("plugins.lsp")
 require("plugins.ibl")
 require("plugins.neocord")
 require("plugins.sessions")
+require("plugins.statusline")
 require("plugins.telescope")
 require("plugins.tree")
 require("plugins.treesitter")
-require("plugins.treesitter-context")
 
 vim.pack.add({
 	"https://github.com/nvim-mini/mini.trailspace",
@@ -30,5 +28,4 @@ vim.pack.add({
 }, { confirm = false })
 
 vim.cmd.packadd("elixir.nvim")
-
 require("mini.trailspace")

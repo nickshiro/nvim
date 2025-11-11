@@ -1,5 +1,6 @@
 local map = vim.keymap.set
 local telescope = require("telescope.builtin")
+local ts_move = require("nvim-treesitter-textobjects.move")
 
 local function exe(cmd)
 	return function()
@@ -24,6 +25,22 @@ map("n", "<leader>xx", telescope.diagnostics)
 map("n", "<leader>xw", function()
 	telescope.diagnostics({ bufnr = 0 })
 end)
+-- Scope
+map("n", "]f", function()
+	ts_move.goto_next_start("@function.outer")
+end)
+map("n", "]F", function()
+	ts_move.goto_next_end("@function.outer")
+end)
+map("n", "[f", function()
+	ts_move.goto_previous_start("@function.outer")
+end)
+map("n", "[F", function()
+	ts_move.goto_previous_end("@function.outer")
+end)
+-- Tree
+map("n", "<leader>e", exe("Neotree toggle"))
+map("n", "<leader>o", exe("Neotree focus"))
 
 vim.api.nvim_create_user_command("PackUpdate", function()
 	vim.pack.update()

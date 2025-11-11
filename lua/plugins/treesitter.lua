@@ -1,6 +1,8 @@
 vim.pack.add({
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
-	"https://github.com/windwp/nvim-ts-autotag",
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
+	{ src = "https://github.com/windwp/nvim-ts-autotag" },
 }, { confirm = false })
 
 vim.cmd.packadd("nvim-treesitter")
@@ -51,4 +53,11 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = function(ev)
 		vim.treesitter.start(ev.buf)
 	end,
+})
+
+require("treesitter-context").setup({
+	enable = true,
+	max_lines = 5,
+	mode = "topline",
+	multiwindow = true,
 })

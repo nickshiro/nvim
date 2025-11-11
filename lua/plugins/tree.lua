@@ -88,7 +88,3 @@ require("neo-tree").setup({
 	},
 	use_popups_for_input = false,
 })
-local map = vim.keymap.set
-
-map("n", "<leader>e", "<CMD>Neotree toggle<CR>", { desc = "Toggle tree" })
-map("n", "<leader>o", "<CMD>Neotree focus<CR>", { desc = "Focus tree" })
