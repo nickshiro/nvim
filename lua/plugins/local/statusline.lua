@@ -17,7 +17,7 @@ end
 local function file()
 	local path = vim.fn.expand("%:.")
 
-	if vim.bo.filetype == "neo-tree" or path == "" then
+	if vim.bo.filetype == "neo-tree" or vim.bo.filetype == "nvim-pack" or path == "" then
 		return ""
 	end
 
