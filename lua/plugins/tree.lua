@@ -40,12 +40,6 @@ require("neo-tree").setup({
 				end,
 				desc = "Copy Path to Clipboard",
 			},
-			["O"] = {
-				function(state)
-					require("lazy.util").open(state.tree:get_node().path, { system = true })
-				end,
-				desc = "Open with System Application",
-			},
 			["P"] = { "toggle_preview", config = { use_float = false } },
 		},
 	},
