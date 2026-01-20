@@ -42,6 +42,10 @@ local ensure_installed = {
 	"gitignore",
 	"git_config",
 	"dockerfile",
+    "svelte",
+    "haskell",
+    "zig",
+    "xml",
 }
 
 require("nvim-treesitter").install(ensure_installed)

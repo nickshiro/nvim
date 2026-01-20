@@ -36,6 +36,7 @@ cmp.setup({
 		{ name = "buffer", priority = "60" },
 		{ name = "nvim_lua", priority = "70" },
 		{ name = "path", priority = "90" },
+		{ name = "code_actions" },
 	}),
 
 	formatting = {

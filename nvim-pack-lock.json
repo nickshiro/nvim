@@ -8,6 +8,10 @@
       "rev": "3732756",
       "src": "https://github.com/L3MON4D3/LuaSnip"
     },
+    "accent.vim": {
+      "rev": "54e0b25",
+      "src": "https://github.com/Alligator/accent.vim"
+    },
     "arc.nvim": {
       "rev": "5f60430",
       "src": "https://github.com/nickshiro/arc.nvim"

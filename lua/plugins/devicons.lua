@@ -51,6 +51,11 @@ devicons.set_icon({
         color = license_color,
         name = "License"
     },
+    ["architecture.md"] = {
+        icon = "",
+        color = "#40FBA7",
+        name = "ArchitectureMd",
+    },
     ["golden"] = {
         icon = "󰂔",
         color = go_color,

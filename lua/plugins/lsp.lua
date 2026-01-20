@@ -49,6 +49,7 @@ vim.lsp.config("emmet_language_server", {
 		"scss",
 		"pug",
 		"typescriptreact",
+		"svelte",
 	},
 })
 
@@ -62,14 +63,14 @@ end
 
 vim.lsp.enable({
 	"ts_ls",
-	"cssls",
+	-- "cssls",
 	"html",
-    "gopls",
+	"gopls",
 	"tailwindcss",
 	"rust_analyzer",
 	"jsonls",
 	"emmet_language_server",
-    -- "emmet_ls",
+	-- "emmet_ls",
 	"biome",
 	"bashls",
 	"yamlls",
@@ -77,4 +78,7 @@ vim.lsp.enable({
 	"lua_ls",
 	"stylua",
 	"zls",
+	"svelte",
+	"lisp",
+	"haskell",
 })

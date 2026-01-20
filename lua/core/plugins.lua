@@ -13,7 +13,7 @@ require("plugins.treesitter")
 
 vim.pack.add({
 	"https://github.com/nvim-mini/mini.trailspace",
-	-- Themes
+    -- Themes
 	"https://github.com/nickshiro/arc.nvim",
 	"https://github.com/catppuccin/nvim",
 	"https://github.com/sharpchen/Eva-Theme.nvim",
@@ -23,9 +23,12 @@ vim.pack.add({
 	"https://github.com/vague2k/vague.nvim",
 	"https://github.com/olivercederborg/poimandres.nvim",
 	"https://github.com/sam4llis/nvim-tundra",
+    "https://github.com/Alligator/accent.vim",
 	"https://github.com/nickshiro/better-colorscheme.nvim",
 	"file:///home/nick/w/elixir.nvim",
 }, { confirm = false })
 
+
 vim.cmd.packadd("elixir.nvim")
+vim.cmd.packadd("way.nvim")
 require("mini.trailspace")
