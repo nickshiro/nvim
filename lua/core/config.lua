@@ -67,3 +67,6 @@ g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
 
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
+
+-- o.list = true
+-- opt.listchars = { tab = " ", space = "·" }
