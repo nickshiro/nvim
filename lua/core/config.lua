@@ -68,5 +68,5 @@ g.loaded_netrwPlugin = 1
 
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 
--- o.list = true
--- opt.listchars = { tab = " ", space = "·" }
+vim.o.list = true
+opt.listchars = { tab = "> ", space = "·" }

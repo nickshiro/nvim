@@ -1,7 +1,7 @@
 vim.pack.add({ "https://github.com/lukas-reineke/indent-blankline.nvim" }, { confirm = false })
 
 require("ibl").setup({
-	indent = { char = "│" },
+	indent = { char = "|" },
 	scope = {
 		enabled = true,
 		show_exact_scope = false,

@@ -17,14 +17,10 @@ vim.pack.add({
 	"https://github.com/silentium-theme/silentium.nvim",
 	"https://github.com/skewb1k/vague.nvim",
 	"https://github.com/catppuccin/nvim",
-	"https://github.com/sharpchen/Eva-Theme.nvim",
-	"https://github.com/rebelot/kanagawa.nvim",
-	"https://github.com/rose-pine/neovim",
-	"https://github.com/folke/tokyonight.nvim",
 	"https://github.com/Alligator/accent.vim",
 }, { confirm = false })
 
 require("mini.trailspace")
 
 local silentium = require("silentium")
-silentium.setup({ accent = silentium.accents.peach })
+silentium.setup({ accent = silentium.accents.rose })
