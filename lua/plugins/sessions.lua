@@ -1,23 +1,35 @@
-vim.pack.add(
-	{ "https://github.com/Shatur/neovim-session-manager", "https://github.com/nvim-lua/plenary.nvim" },
-	{ confirm = false }
-)
+local session_dir = vim.fn.stdpath("data") .. "/sessions"
 
-local Path = require("plenary.path")
-local config = require("session_manager.config")
+local function ensure_dir()
+	if vim.fn.isdirectory(session_dir) == 0 then
+		vim.fn.mkdir(session_dir, "p")
+	end
+end
 
-require("session_manager").setup({
-	sessions_dir = Path:new(vim.fn.stdpath("data"), "sessions"),
-	autoload_mode = config.AutoloadMode.CurrentDir,
-	autosave_last_session = true,
-	autosave_ignore_not_normal = true,
-	autosave_ignore_dirs = {},
-	autosave_ignore_filetypes = {
-		"gitcommit",
-		"gitrebase",
-	},
-	autosave_ignore_buftypes = {},
-	autosave_only_in_session = false,
-	max_path_length = 80,
-	load_include_current = false,
+local function session_path()
+	local cwd = vim.fn.getcwd()
+	local name = cwd:gsub("/", "%%")
+	return session_dir .. "/" .. name .. ".vim"
+end
+
+vim.api.nvim_create_autocmd("VimEnter", {
+	once = true,
+	callback = function()
+		if vim.fn.argc() == 0 then
+			local path = session_path()
+			if vim.fn.filereadable(path) == 1 then
+				vim.cmd("silent! source " .. vim.fn.fnameescape(path))
+				vim.cmd("doautocmd BufRead")
+				vim.cmd("doautocmd FileType")
+			end
+		end
+	end,
+})
+
+vim.api.nvim_create_autocmd("VimLeavePre", {
+	callback = function()
+		ensure_dir()
+		local path = session_path()
+		vim.cmd("silent! mksession! " .. vim.fn.fnameescape(path))
+	end,
 })
