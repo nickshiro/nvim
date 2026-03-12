@@ -14,6 +14,7 @@ require("ibl").setup({
 			"lazy",
 			"help",
 			"terminal",
+			"neo-tree",
 			"TelescopePrompt",
 		},
 		buftypes = {

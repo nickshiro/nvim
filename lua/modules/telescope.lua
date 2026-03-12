@@ -11,10 +11,7 @@ require("telescope").setup({
 			"*.pyc",
 			"__pycache__/",
 			".zig-cache/",
-            -- Elixir
-            "_build",
-            "deps",
-            ".elixir_ls"
+			".elixir_ls",
 		},
 	},
 	pickers = {

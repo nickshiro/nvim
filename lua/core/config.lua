@@ -1,21 +1,15 @@
-local opt = vim.opt
-local wo = vim.wo
-local g = vim.g
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_tutor_mode_plugin = 0
+vim.g.loaded_2html_plugin = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_node_provider = 0
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
-g.loaded_tutor_mode_plugin = 0
-g.loaded_2html_plugin = 0
-
-g.loaded_python3_provider = 0
-g.loaded_ruby_provider = 0
-g.loaded_perl_provider = 0
-g.loaded_node_provider = 0
-
-g.mapleader = " "
-g.maplocalleader = " "
-
-opt.fillchars:append({ eob = " " })
+vim.opt.fillchars:append({ eob = " " })
 
 vim.diagnostic.config({
 	signs = {
@@ -34,39 +28,27 @@ vim.diagnostic.config({
 	severity_sort = true,
 })
 
-opt.wrap = false
-opt.swapfile = false
-opt.encoding = "utf-8"
-
-opt.clipboard = "unnamedplus"
-
-opt.ignorecase = true
-opt.smartcase = true
-opt.hlsearch = true
-opt.incsearch = true
-
-opt.mouse = "a"
-opt.mousefocus = true
-
-opt.signcolumn = "yes"
-opt.cursorline = true
-opt.number = true
-opt.relativenumber = true
-wo.number = true
-wo.relativenumber = true
-
-opt.expandtab = true
-opt.shiftwidth = 4
-opt.tabstop = 4
-opt.softtabstop = 4
-opt.smartindent = true
-opt.cindent = true
-opt.smarttab = true
-
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
-
-opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
-
-vim.o.list = true
-opt.listchars = { tab = "> ", space = "·" }
+vim.opt.wrap = false
+vim.opt.swapfile = false
+vim.opt.encoding = "utf-8"
+vim.opt.clipboard = "unnamedplus"
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
+vim.opt.mouse = "a"
+vim.opt.mousefocus = true
+vim.opt.signcolumn = "yes"
+vim.opt.cursorline = true
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.smartindent = true
+vim.opt.cindent = true
+vim.opt.smarttab = true
+vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "skiprtp" }
+vim.opt.list = true
+vim.opt.listchars = { tab = "> ", space = "·" }

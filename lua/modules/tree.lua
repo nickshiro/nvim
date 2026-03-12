@@ -50,8 +50,6 @@ require("neo-tree").setup({
 			indent_marker = "│",
 			last_indent_marker = "└",
 			with_expanders = true,
-			expander_collapsed = "",
-			expander_expanded = "",
 		},
 		icon = {
 			default = "",

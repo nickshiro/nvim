@@ -10,33 +10,24 @@ vim.lsp.config("lua_ls", {
 	},
 })
 
-vim.lsp.config("elixir-ls", {
-	cmd = { "elixir-ls" },
-	filetypes = { "elixir", "eelixir", "heex", "surface" },
-	settings = {
-		elixirLS = {
-			dialyzerEnabled = true,
-			fetchDeps = false,
-		},
-	},
-})
+vim.lsp.config("ts_ls", {})
 
-vim.lsp.config("emmet-ls", {
-	cmd = { "~/w/emmet-ls/zig-out/bin/emmet_ls" },
-	filetypes = { "html", "css", "typescriptreact" },
+vim.lsp.config("prlsp", {
+	cmd = { "prlsp" },
+	root_markers = { ".git" },
+	capabilities = {
+		offsetEncoding = { "utf-16" },
+	},
 })
 
 vim.lsp.config("emmet_language_server", {
 	filetypes = {
 		"css",
-		"eruby",
 		"html",
 		"javascript",
 		"javascriptreact",
-		"less",
 		"sass",
 		"scss",
-		"pug",
 		"typescriptreact",
 		"svelte",
 	},
@@ -50,6 +41,8 @@ for _, lang in pairs({ "lua_ls", "ts_ls" }) do
 	})
 end
 
+-- vim.lsp.log.set_level('debug')
+
 vim.lsp.enable({
 	"ts_ls",
 	"cssls",
@@ -59,14 +52,12 @@ vim.lsp.enable({
 	"rust_analyzer",
 	"jsonls",
 	"emmet_language_server",
-	-- "emmet_ls",
 	"biome",
 	"bashls",
 	"yamlls",
-	"elixir-ls",
 	"lua_ls",
 	"stylua",
 	"zls",
 	"svelte",
-	"lisp",
+	"prlsp",
 })

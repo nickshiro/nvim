@@ -46,7 +46,8 @@ local ensure_installed = {
     "haskell",
     "zig",
     "xml",
-    "sql"
+    "sql",
+    "nix"
 }
 
 require("nvim-treesitter").install(ensure_installed)

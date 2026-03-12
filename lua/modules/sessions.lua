@@ -1,3 +1,5 @@
+vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "skiprtp" }
+
 local session_dir = vim.fn.stdpath("data") .. "/sessions"
 
 local function ensure_dir()
@@ -8,7 +10,7 @@ end
 
 local function session_path()
 	local cwd = vim.fn.getcwd()
-	local name = cwd:gsub("/", "%%")
+	local name = vim.fn.sha256(cwd):sub(1, 16)
 	return session_dir .. "/" .. name .. ".vim"
 end
 
@@ -19,7 +21,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 			local path = session_path()
 			if vim.fn.filereadable(path) == 1 then
 				vim.cmd("silent! source " .. vim.fn.fnameescape(path))
-				vim.cmd("doautocmd BufRead")
+				vim.cmd("bufdo doautocmd BufRead")
 				vim.cmd("doautocmd FileType")
 			end
 		end
@@ -33,3 +35,13 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 		vim.cmd("silent! mksession! " .. vim.fn.fnameescape(path))
 	end,
 })
+
+vim.api.nvim_create_autocmd("DirChanged", {
+	callback = function()
+		ensure_dir()
+	end,
+})
+
+vim.api.nvim_create_user_command("SessionDelete", function()
+	vim.fn.delete(session_path())
+end, {})
