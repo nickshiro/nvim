@@ -75,6 +75,12 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
+-- Tabs
+keymap("n", "<leader>tn", vim.cmd.tabnew, opts)
+keymap("n", "<leader>tc", vim.cmd.tabclose, opts)
+keymap("n", "]t", vim.cmd.tabnext, opts)
+keymap("n", "[t", vim.cmd.tabprevious, opts)
+
 -- Pack management
 cmd("PackUpdate", function()
 	vim.pack.update()

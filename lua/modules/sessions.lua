@@ -21,8 +21,15 @@ vim.api.nvim_create_autocmd("VimEnter", {
 			local path = session_path()
 			if vim.fn.filereadable(path) == 1 then
 				vim.cmd("silent! source " .. vim.fn.fnameescape(path))
+
+				local saved_win = vim.api.nvim_get_current_win()
+				local saved_bufnr = vim.api.nvim_get_current_buf()
+
 				vim.cmd("bufdo doautocmd BufRead")
 				vim.cmd("doautocmd FileType")
+
+				pcall(vim.api.nvim_set_current_win, saved_win)
+				pcall(vim.api.nvim_set_current_buf, saved_bufnr)
 			end
 		end
 	end,

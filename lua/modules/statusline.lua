@@ -1,57 +1,71 @@
 local modes = {
-	n = "-N-",
-	i = "-I-",
-	v = "-V-",
+	n = "N",
+	i = "I",
+	v = "V",
 	V = "VL",
-	[""] = "VB",
-	c = "-C-",
-	R = "-R-",
-	t = "-T-",
+	[""] = "VB",
+	c = "C",
+	R = "R",
+	t = "T",
 }
 
 local function mode()
-	local m = vim.fn.mode()
-	return modes[m] or m
+	return modes[vim.fn.mode()] or "?"
 end
 
 local function file()
-	local path = vim.fn.expand("%:.")
+	local ft = vim.bo.filetype
+	if ft == "neo-tree" or ft == "nvim-pack" then
+		return ""
+	end
 
-	if vim.bo.filetype == "neo-tree" or vim.bo.filetype == "nvim-pack" or path == "" then
+	local path = vim.fn.expand("%:.")
+	if not path or path == "" then
 		return ""
 	end
 
 	return path
 end
 
-local _branch_cache
+local _branch_cache = {}
 local function branch()
-	if _branch_cache ~= nil then
-		return _branch_cache
+	local cwd = vim.fn.getcwd()
+	if _branch_cache[cwd] ~= nil then
+		return _branch_cache[cwd]
 	end
 
-	local ok, res = pcall(vim.fn.system, "git rev-parse --abbrev-ref HEAD 2>/dev/null")
-	res = ok and vim.trim(res) or ""
+	local ok, out = pcall(vim.fn.system, "git rev-parse --abbrev-ref HEAD 2>/dev/null")
+	out = ok and vim.trim(out) or ""
 
-	if res ~= "" and res ~= "HEAD" then
-		_branch_cache = " " .. res
+	local result
+	if out ~= "" and out ~= "HEAD" then
+		result = " " .. out
 	else
-		local bok, bres = pcall(vim.fn.system, "git config --get init.defaultBranch 2>/dev/null")
-		bres = bok and vim.trim(bres) or ""
-		_branch_cache = bres ~= "" and (" " .. bres) or ""
+		local dok, def = pcall(vim.fn.system, "git config --get init.defaultBranch 2>/dev/null")
+		def = dok and vim.trim(def) or ""
+		result = def ~= "" and (" " .. def) or ""
 	end
 
-	return _branch_cache
+	_branch_cache[cwd] = "󰘬" .. result
+	return "󰘬" .. result
 end
 
-vim.api.nvim_create_autocmd({ "DirChanged", "BufEnter", "FocusGained" }, {
+vim.api.nvim_create_autocmd({ "DirChanged", "FocusGained" }, {
 	callback = function()
-		_branch_cache = nil
+		_branch_cache = {}
 	end,
 })
 
 function _G.statusline()
-	return table.concat({ " ", mode(), " | ", file(), "%=", "", branch(), " | ", "%l:%c", " " })
+	return table.concat({
+		" ",
+		mode(),
+		" │ ",
+		file(),
+		"%=",
+		branch(),
+		" │ %l:%c ",
+	})
 end
 
 vim.opt.showmode = false

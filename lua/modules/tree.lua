@@ -32,14 +32,6 @@ require("neo-tree").setup({
 			["F"] = "noop",
 			["b"] = "rename_basename",
 			["<space>"] = "none",
-			["Y"] = {
-				function(state)
-					local node = state.tree:get_node()
-					local path = node:get_id()
-					vim.fn.setreg("+", path, "c")
-				end,
-				desc = "Copy Path to Clipboard",
-			},
 			["P"] = { "toggle_preview", config = { use_float = false } },
 		},
 	},
@@ -52,12 +44,9 @@ require("neo-tree").setup({
 			with_expanders = true,
 		},
 		icon = {
-			default = "",
-			folder_closed = "",
+			folder_closed = "",
 			folder_open = "",
-			folder_empty = "",
-			folder_empty_open = "",
-			highlight = "NeoTreeFileIcon",
+			folder_empty = "",
 		},
 		git_status = {
 			symbols = {
