@@ -19,6 +19,8 @@ local css_icon, css_color = "", "#7e57c2"
 local readme_icon, readme_color = "󰋼", "#42a5f5"
 local json_icon, json_color = "", ext_icons["json"].color
 local md_icon, md_color = "", ext_icons["md"].color
+local png_icon, png_color = "", ext_icons["png"].color
+local ico_icon, ico_color = "", ext_icons["ico"].color
 
 devicons.setup({
 	strict = true,
@@ -37,6 +39,8 @@ devicons.setup({
 		css = { icon = css_icon, color = css_color, name = "Css" },
 		json = { icon = json_icon, color = json_color, name = "Json" },
 		md = { icon = md_icon, color = md_color, name = "Md" },
+		png = { icon = png_icon, color = png_color, name = "Png" },
+		ico = { icon = ico_icon, color = ico_color, name = "Ico" },
 	},
 	override_by_filename = {
 		["tsconfig.app.json"] = { icon = ts_icon, color = ts_color, name = "TsConfigApp" },

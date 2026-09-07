@@ -58,7 +58,7 @@ keymap("n", "[F", function()
 	require("nvim-treesitter-textobjects.move").goto_previous_end("@function.outer")
 end, opts)
 
--- Neo-Tree
+-- Tree
 keymap("n", "<leader>e", function()
 	require("neo-tree.command").execute({ toggle = true })
 end, opts)

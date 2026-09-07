@@ -6,17 +6,13 @@ vim.pack.add({
 require("telescope").setup({
 	defaults = {
 		file_ignore_patterns = {
-			".git/",
+			"%.git/",
 			"node_modules/",
-			"*.pyc",
+			"%.pyc$",
 			"__pycache__/",
-			".zig-cache/",
-			".elixir_ls",
-		},
-	},
-	pickers = {
-		find_files = {
-			find_command = { "rg", "--files", "--hidden", "--glob", "!.git" },
+			"%.zig%-cache/",
+			"%.elixir_ls/",
+			"dist%-newstyle/",
 		},
 	},
 })

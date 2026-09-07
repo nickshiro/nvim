@@ -3,6 +3,7 @@ vim.pack.add({
 	"https://github.com/nvim-lua/plenary.nvim",
 	"https://github.com/nvim-tree/nvim-web-devicons",
 	"https://github.com/MunifTanjim/nui.nvim",
+	"https://github.com/silentium-theme/silentium.nvim",
 }, { confirm = false })
 
 require("neo-tree").setup({
@@ -68,4 +69,21 @@ require("neo-tree").setup({
 		},
 	},
 	use_popups_for_input = false,
+})
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+	callback = function()
+		local silentium = require("silentium")
+
+		local function hl(name, val)
+			vim.api.nvim_set_hl(0, name, val)
+		end
+
+		hl("NeoTreeDirectoryIcon", { fg = silentium.colors.white })
+		hl("NeoTreeDirectoryName", { fg = silentium.colors.white })
+		hl("NeoTreeGitAdded", { fg = silentium.colors.accent })
+		hl("NeoTreeGitIgnored", { fg = silentium.colors.gray })
+		hl("NeoTreeGitModified", { fg = silentium.colors.accent })
+		hl("NeoTreeGitUntracked", { fg = silentium.colors.accent })
+	end,
 })

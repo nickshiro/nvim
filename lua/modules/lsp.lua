@@ -60,4 +60,6 @@ vim.lsp.enable({
 	"zls",
 	"svelte",
 	"prlsp",
+	"hls",
+	"expert",
 })

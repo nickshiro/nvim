@@ -11,6 +11,7 @@ local ensure_installed = {
 	"bash",
 	"query",
 	"c",
+    "cpp",
 	"go",
 	"gosum",
 	"gotmpl",
