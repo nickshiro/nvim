@@ -44,11 +44,11 @@ end
 -- vim.lsp.log.set_level('debug')
 
 vim.lsp.enable({
-	"ts_ls",
+	"tsc",
 	"cssls",
 	"html",
 	"gopls",
-	-- "tailwindcss",
+	"tailwindcss",
 	"rust_analyzer",
 	"jsonls",
 	"emmet_language_server",
@@ -62,4 +62,5 @@ vim.lsp.enable({
 	"prlsp",
 	"hls",
 	"expert",
+    "mojo"
 })

@@ -15,4 +15,10 @@ require("telescope").setup({
 			"dist%-newstyle/",
 		},
 	},
+	pickers = {
+		find_files = {
+			hidden = true,
+			no_ignore = false,
+		},
+	},
 })
