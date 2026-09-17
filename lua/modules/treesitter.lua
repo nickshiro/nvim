@@ -44,7 +44,6 @@ local ensure_installed = {
 	"git_config",
 	"dockerfile",
 	"svelte",
-	"haskell",
 	"zig",
 	"xml",
 	"sql",
