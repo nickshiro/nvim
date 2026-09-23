@@ -7,17 +7,8 @@ local icon_namespace = api.nvim_create_namespace("filetree_icons")
 
 local MIN_WIDTH = 28
 local states = {}
+local clipboard
 local group = api.nvim_create_augroup("FileTree", { clear = true })
-local tree_options = {
-	number = false,
-	relativenumber = false,
-	signcolumn = "no",
-	foldcolumn = "0",
-	statuscolumn = "",
-	wrap = false,
-	list = false,
-	winfixwidth = true,
-}
 local git_styles = {
 	ignored = { icon = "", highlight = "Comment", priority = 0 },
 	untracked = { icon = "", highlight = "Added", priority = 1 },
@@ -91,13 +82,9 @@ local function fit_tree(win)
 		width = math.max(width, vim.fn.strdisplaywidth(line))
 	end
 
-	api.nvim_win_set_width(win, math.max(MIN_WIDTH, width + 1))
-end
-
-local function restore_window(win)
-	for option in pairs(tree_options) do
-		api.nvim_set_option_value(option, vim.go[option], { win = win, scope = "local" })
-	end
+	local textoff = vim.fn.getwininfo(win)[1].textoff
+	api.nvim_set_option_value("winfixwidth", true, { win = win, scope = "local" })
+	api.nvim_win_set_width(win, math.max(MIN_WIDTH, width + textoff + 1))
 end
 
 local function tree_window(state)
@@ -333,7 +320,11 @@ local function target_window(state)
 	local tree = tree_window(state)
 	vim.cmd("botright vnew")
 	state.target = api.nvim_get_current_win()
-	restore_window(state.target)
+	api.nvim_set_option_value("winfixwidth", vim.go.winfixwidth, { win = state.target, scope = "local" })
+	api.nvim_set_option_value("list", vim.go.list, { win = state.target, scope = "local" })
+	api.nvim_set_option_value("number", vim.go.number, { win = state.target, scope = "local" })
+	api.nvim_set_option_value("relativenumber", vim.go.relativenumber, { win = state.target, scope = "local" })
+	api.nvim_set_option_value("signcolumn", vim.go.signcolumn, { win = state.target, scope = "local" })
 	fit_tree(tree)
 
 	return state.target
@@ -422,6 +413,102 @@ local function edit_entry(state, action)
 	refresh(state)
 end
 
+local function copy_path(source, destination)
+	local stat = assert(vim.uv.fs_lstat(source), "Cannot read: " .. source)
+
+	if stat.type == "directory" then
+		assert(vim.uv.fs_mkdir(destination, stat.mode), "Cannot create directory: " .. destination)
+		for name in vim.fs.dir(source) do
+			copy_path(vim.fs.joinpath(source, name), vim.fs.joinpath(destination, name))
+		end
+	elseif stat.type == "link" then
+		local target = assert(vim.uv.fs_readlink(source), "Cannot read link: " .. source)
+		assert(vim.uv.fs_symlink(target, destination), "Cannot create link: " .. destination)
+	else
+		assert(vim.uv.fs_copyfile(source, destination), "Cannot copy: " .. source)
+		vim.uv.fs_chmod(destination, stat.mode)
+	end
+end
+
+local function copy_entry(state, visual)
+	local first = api.nvim_win_get_cursor(0)[1]
+	local last = visual and vim.fn.line("v") or first
+	first, last = math.min(first, last), math.max(first, last)
+	local paths, selected = {}, {}
+	for row = first, last do
+		local entry = state.entries[row]
+		if entry then
+			local covered = false
+			for parent in vim.fs.parents(entry.path) do
+				if selected[parent] then
+					covered = true
+					break
+				end
+			end
+			if not covered then
+				paths[#paths + 1] = entry.path
+				selected[entry.path] = true
+			end
+		end
+	end
+	if visual then
+		api.nvim_feedkeys(api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
+	end
+	if #paths == 0 then
+		return
+	end
+
+	clipboard = paths
+	vim.notify(#paths == 1 and ("copied: " .. paths[1]) or ("copied: " .. #paths .. " items"))
+end
+
+local function paste_entry(state)
+	if not clipboard then
+		vim.notify("file tree clipboard is empty", vim.log.levels.WARN)
+		return
+	end
+
+	local entry = state.entries[api.nvim_win_get_cursor(0)[1]]
+	local destination_dir = entry and (entry.directory and entry.path or vim.fs.dirname(entry.path)) or state.root
+	local pending, destinations, pasted = {}, {}, {}
+	local ok, err = pcall(function()
+		-- Resolve all names before copying so cancellation leaves the destination untouched.
+		for _, source in ipairs(clipboard) do
+			local name = vim.fs.basename(source)
+			local destination = vim.fs.joinpath(destination_dir, name)
+			if vim.uv.fs_lstat(destination) or destinations[destination] then
+				name = vim.fn.input("rename: ", name)
+				if name == "" then
+					return
+				end
+				assert(name ~= "." and name ~= ".." and not name:find("/", 1, true), "A new name must not contain a path")
+				destination = vim.fs.joinpath(destination_dir, name)
+			end
+			assert(vim.uv.fs_lstat(source), "source no longer exists: " .. source)
+			assert(not vim.uv.fs_lstat(destination) and not destinations[destination], "already exists: " .. destination)
+			assert(not vim.startswith(destination, source .. "/"), "cannot copy a directory into itself: " .. source)
+			pending[#pending + 1] = { source = source, destination = destination }
+			destinations[destination] = true
+		end
+		for _, item in ipairs(pending) do
+			copy_path(item.source, item.destination)
+			pasted[#pasted + 1] = item.destination
+		end
+	end)
+
+	if #pasted > 0 then
+		state.entries, state.selected = {}, pasted[#pasted]
+	end
+	refresh(state)
+	if not ok then
+		vim.notify(err .. (#pasted > 0 and ("\nAlready pasted: " .. #pasted .. " items") or ""), vim.log.levels.ERROR)
+		return
+	end
+	if #pasted > 0 then
+		vim.notify(#pasted == 1 and ("pasted: " .. pasted[1]) or ("pasted: " .. #pasted .. " items"))
+	end
+end
+
 local function close_tree()
 	local win = tree_window(states[api.nvim_get_current_tabpage()])
 	if not win then
@@ -430,7 +517,11 @@ local function close_tree()
 
 	if vim.fn.winnr("$") == 1 then
 		api.nvim_win_set_buf(win, api.nvim_create_buf(true, false))
-		restore_window(win)
+		api.nvim_set_option_value("winfixwidth", vim.go.winfixwidth, { win = win, scope = "local" })
+		api.nvim_set_option_value("list", vim.go.list, { win = win, scope = "local" })
+		api.nvim_set_option_value("number", vim.go.number, { win = win, scope = "local" })
+		api.nvim_set_option_value("relativenumber", vim.go.relativenumber, { win = win, scope = "local" })
+		api.nvim_set_option_value("signcolumn", vim.go.signcolumn, { win = win, scope = "local" })
 	else
 		api.nvim_win_close(win, true)
 	end
@@ -463,10 +554,11 @@ local function open_tree(single)
 
 	win = api.nvim_get_current_win()
 	api.nvim_win_set_buf(win, state.buf)
+	api.nvim_set_option_value("list", false, { win = win, scope = "local" })
+	api.nvim_set_option_value("number", false, { win = win, scope = "local" })
+	api.nvim_set_option_value("relativenumber", false, { win = win, scope = "local" })
+	api.nvim_set_option_value("signcolumn", "no", { win = win, scope = "local" })
 	state.entries = {}
-	for option, value in pairs(tree_options) do
-		api.nvim_set_option_value(option, value, { win = win, scope = "local" })
-	end
 
 	keymap.set("n", "<CR>", function()
 		open_entry(state)
@@ -480,6 +572,15 @@ local function open_tree(single)
 	end, { buffer = state.buf })
 	keymap.set("n", "d", function()
 		edit_entry(state, "delete")
+	end, { buffer = state.buf })
+	keymap.set("n", "y", function()
+		copy_entry(state)
+	end, { buffer = state.buf })
+	keymap.set("x", "y", function()
+		copy_entry(state, true)
+	end, { buffer = state.buf, desc = "Copy selected files and directories" })
+	keymap.set("n", "p", function()
+		paste_entry(state)
 	end, { buffer = state.buf })
 
 	refresh(state)
