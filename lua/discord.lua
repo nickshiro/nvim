@@ -7,6 +7,7 @@ local timer = vim.uv.new_timer()
 
 local function frame(opcode, payload)
 	local body = vim.json.encode(payload)
+
 	local function u32(n)
 		return string.char(
 			n % 256,
@@ -45,40 +46,72 @@ local function update(buffer)
 	if buffer and vim.api.nvim_buf_is_valid(buffer) and vim.api.nvim_buf_get_name(buffer) ~= "" then
 		last_buffer = buffer
 	end
-	timer:stop()
-	timer:start(300, 0, vim.schedule_wrap(send))
-end
 
-for index = 0, 9 do
-	local socket = (vim.env.XDG_RUNTIME_DIR or "/tmp") .. "/discord-ipc-" .. index
-
-	if vim.uv.fs_stat(socket) then
-		pipe = vim.uv.new_pipe(false)
-		if not pipe then
-			return
-		end
-
-		pipe:connect(socket, function(err)
-			if err then
-				return
-			end
-
-			vim.schedule(function()
-				pipe:read_start(function(_, data)
-					if data and not ready then
-						ready = true
-						vim.schedule(function()
-							update(vim.api.nvim_get_current_buf())
-						end)
-					end
-				end)
-
-				pipe:write(frame(0, { v = 1, client_id = client_id }))
-			end)
-		end)
-		break
+	if timer then
+		timer:stop()
+		timer:start(300, 0, vim.schedule_wrap(send))
 	end
 end
+
+local function disconnect()
+	ready = false
+
+	if timer then
+		timer:stop()
+	end
+
+	if pipe and not pipe:is_closing() then
+		pipe:read_stop()
+		pipe:close()
+	end
+
+	pipe = nil
+end
+
+local function connect()
+	disconnect()
+
+	for index = 0, 9 do
+		local socket = (vim.env.XDG_RUNTIME_DIR or "/tmp") .. "/discord-ipc-" .. index
+
+		if vim.uv.fs_stat(socket) then
+			local new_pipe = vim.uv.new_pipe(false)
+			if not new_pipe then
+				return
+			end
+			pipe = new_pipe
+
+			new_pipe:connect(socket, function(err)
+				if err or pipe ~= new_pipe then
+					return
+				end
+
+				vim.schedule(function()
+					if pipe ~= new_pipe or new_pipe:is_closing() then
+						return
+					end
+
+					new_pipe:read_start(function(_, data)
+						if data and not ready and pipe == new_pipe then
+							ready = true
+							vim.schedule(function()
+								update(vim.api.nvim_get_current_buf())
+							end)
+						end
+					end)
+
+					new_pipe:write(frame(0, { v = 1, client_id = client_id }))
+				end)
+			end)
+
+			return
+		end
+	end
+end
+
+connect()
+
+vim.api.nvim_create_user_command("PresenceRefresh", connect, {})
 
 vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained" }, {
 	group = group,
