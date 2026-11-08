@@ -41,11 +41,11 @@
       "src": "https://github.com/hrsh7th/nvim-cmp"
     },
     "nvim-lspconfig": {
-      "rev": "ac9d2f7c4757db6320cab6697fe73e5e8adb2457",
+      "rev": "046b1a797af1effe8e0474b9af9657a3761ec58a",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
-      "rev": "9a168f6357ed21c3a636e1727bc7d382abc451b8",
+      "rev": "f603a2f4da48728f80257fb5fbb90145fd1dc173",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -63,7 +63,7 @@
       "src": "https://github.com/windwp/nvim-ts-autotag"
     },
     "nvim-web-devicons": {
-      "rev": "5f032a85be210cd1c6ac98861eb3b187ff3bd5eb",
+      "rev": "58447c1fca354bbf184425e4a8d01deecbd6f3c4",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "plenary.nvim": {
@@ -71,7 +71,7 @@
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "silentium.nvim": {
-      "rev": "058b178e7bc793d2083d1f3e248119bf88c1fe3e",
+      "rev": "c2c691773492b9a4a339b89628abd85c22e9b070",
       "src": "https://github.com/silentium-theme/silentium.nvim"
     },
     "telescope.nvim": {
@@ -81,6 +81,10 @@
     "vague.nvim": {
       "rev": "8d9860f0240cb9f1886664ab9211a10267a7588f",
       "src": "https://github.com/skewb1k/vague.nvim"
+    },
+    "zig.vim": {
+      "rev": "4842ab8cb1b000a9acb0a06170d404d12a154918",
+      "src": "https://codeberg.org/ziglang/zig.vim"
     }
   }
 }

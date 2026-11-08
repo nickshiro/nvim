@@ -1,4 +1,7 @@
-vim.pack.add({ "https://github.com/neovim/nvim-lspconfig" }, { confirm = false })
+vim.pack.add(
+	{ "https://github.com/neovim/nvim-lspconfig", "https://codeberg.org/ziglang/zig.vim" },
+	{ confirm = false }
+)
 
 vim.lsp.config("lua_ls", {
 	settings = {
@@ -62,5 +65,5 @@ vim.lsp.enable({
 	"prlsp",
 	"hls",
 	"expert",
-    "mojo"
+	"mojo",
 })
